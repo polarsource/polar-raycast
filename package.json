@@ -12,14 +12,17 @@
   "commands": [
     {
       "name": "index",
-      "title": "View Sales",
-      "description": "View your last incoming sales",
-      "mode": "view"
+      "title": "View Orders",
+      "description": "View your last incoming orders",
+      "mode": "view",
+      "icon": "command_icon.png"
     }
   ],
   "dependencies": {
     "@polar-sh/sdk": "^0.18.0",
     "@raycast/api": "^1.69.0",
+    "@raycast/utils": "^1.18.1",
+    "@tanstack/react-query": "^5.62.3",
     "node-fetch": "^3.3.2"
   },
   "devDependencies": {

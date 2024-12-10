@@ -47,7 +47,7 @@ async function refreshTokens(
   return tokenResponse;
 }
 
-export const authenticate = async () => {
+export const authenticate = async (): Promise<string> => {
   const client = new OAuth.PKCEClient({
     redirectMethod: OAuth.RedirectMethod.Web,
     providerName: "Polar",
@@ -66,9 +66,13 @@ export const authenticate = async () => {
 
   if (tokenSet?.accessToken) {
     if (tokenSet.refreshToken && tokenSet.isExpired()) {
-      await client.setTokens(await refreshTokens(tokenSet.refreshToken));
+      const tokenResponse = await refreshTokens(tokenSet.refreshToken);
+      await client.setTokens(tokenResponse);
+
+      return tokenResponse.access_token;
     }
-    return;
+
+    return tokenSet.accessToken;
   }
 
   const { authorizationCode } = await client.authorize(authRequest);
@@ -76,4 +80,6 @@ export const authenticate = async () => {
   const tokenResponse = await fetchTokens(authRequest, authorizationCode);
 
   await client.setTokens(tokenResponse);
+
+  return tokenResponse.access_token;
 };
