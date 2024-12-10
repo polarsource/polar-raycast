@@ -12,7 +12,7 @@
   "commands": [
     {
       "name": "index",
-      "title": "View Orders",
+      "title": "View Recent Orders",
       "description": "View your last incoming orders",
       "mode": "view",
       "icon": "command-icon.png"
