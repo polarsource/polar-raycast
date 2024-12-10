@@ -1,12 +1,11 @@
 import { Action, ActionPanel, Detail, List } from "@raycast/api";
-import { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { authenticate } from "./oauth";
 import { PolarProvider, queryClient } from "./providers";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { useOrders } from "./hooks/orders";
 import { formatCurrencyAndAmount } from "./utils";
 import { Order } from "@polar-sh/sdk/models/components";
-import { useProduct } from "./hooks/products";
 import { useOrganization } from "./hooks/organizations";
 
 export default function Command() {

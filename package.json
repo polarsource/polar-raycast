@@ -15,7 +15,7 @@
       "title": "View Orders",
       "description": "View your last incoming orders",
       "mode": "view",
-      "icon": "command_icon.png"
+      "icon": "command-icon.png"
     }
   ],
   "dependencies": {
@@ -30,8 +30,10 @@
     "@types/node": "20.8.10",
     "@types/react": "18.2.27",
     "eslint": "^8.51.0",
+    "eslint-plugin-react": "^7.37.2",
     "prettier": "^3.0.3",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "typescript-eslint": "^8.18.0"
   },
   "scripts": {
     "build": "ray build -e dist",

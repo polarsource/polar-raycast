@@ -1,9 +1,9 @@
-import { createContext, PropsWithChildren } from "react";
+import React, { createContext, PropsWithChildren } from "react";
 import { buildPolarClient } from "./polar";
 import { Polar } from "@polar-sh/sdk";
 import { QueryCache, QueryClient } from "@tanstack/react-query";
 
-// @ts-ignore
+// @ts-expect-error Throw if PolarContext is not set
 export const PolarContext = createContext<Polar>(() => {
   throw new Error("PolarContext not set");
 });

@@ -51,7 +51,7 @@ export const authenticate = async (): Promise<string> => {
   const client = new OAuth.PKCEClient({
     redirectMethod: OAuth.RedirectMethod.Web,
     providerName: "Polar",
-    providerIcon: "command_icon.png",
+    providerIcon: "command-icon.png",
     description: "Connect your Polar account…",
   });
 
