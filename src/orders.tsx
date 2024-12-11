@@ -1,5 +1,5 @@
 import { Action, ActionPanel, Detail, List } from "@raycast/api";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { authenticate } from "./oauth";
 import { PolarProvider, queryClient } from "./providers";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -132,17 +132,28 @@ const OrderItem = ({ order }: OrderProps) => {
 };
 
 const OrdersView = () => {
-  const { data: orders, isLoading } = useOrders({ limit: 100 });
+  const { data: orders, isLoading, fetchNextPage, hasNextPage } = useOrders({}, 20);
+
+  const handleLoadMore = useCallback(() => {
+    fetchNextPage();
+  }, [fetchNextPage]);
 
   return (
     <List
       isLoading={isLoading}
       searchBarPlaceholder="Filter orders..."
       filtering={true}
+      pagination={{
+        pageSize: 20,
+        hasMore: hasNextPage,
+        onLoadMore: handleLoadMore,
+      }}
       isShowingDetail
     >
-      {orders?.result.items.map((order) => (
-        <OrderItem key={order.id} order={order} />
+      {orders?.pages
+        .flatMap((page) => page.result.items)
+        .map((order) => (
+          <OrderItem key={order.id} order={order} />
       ))}
     </List>
   );
