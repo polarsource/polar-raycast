@@ -34,7 +34,7 @@ interface SubscriptionItemProps {
 
 const SubscriptionItem = ({ subscription }: SubscriptionItemProps) => {
   const { data: organization, isLoading } = useOrganization(
-    subscription.product.organizationId
+    subscription.product.organizationId,
   );
 
   return (
@@ -135,9 +135,12 @@ const SubscriptionsView = () => {
     isLoading,
     hasNextPage,
     fetchNextPage,
-  } = useListSubscriptions({
-    active: true,
-  }, 20);
+  } = useListSubscriptions(
+    {
+      active: true,
+    },
+    20,
+  );
 
   const handleLoadMore = useCallback(() => {
     fetchNextPage();

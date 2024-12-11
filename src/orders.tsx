@@ -132,7 +132,12 @@ const OrderItem = ({ order }: OrderProps) => {
 };
 
 const OrdersView = () => {
-  const { data: orders, isLoading, fetchNextPage, hasNextPage } = useOrders({}, 20);
+  const {
+    data: orders,
+    isLoading,
+    fetchNextPage,
+    hasNextPage,
+  } = useOrders({}, 20);
 
   const handleLoadMore = useCallback(() => {
     fetchNextPage();
@@ -152,9 +157,7 @@ const OrdersView = () => {
     >
       {orders?.pages
         .flatMap((page) => page.result.items)
-        .map((order) => (
-          <OrderItem key={order.id} order={order} />
-      ))}
+        .map((order) => <OrderItem key={order.id} order={order} />)}
     </List>
   );
 };
