@@ -46,9 +46,9 @@ const CustomerItem = ({ customer }: CustomerProps) => {
                 title="Email"
                 text={customer.email}
               />
-              <List.Item.Detail.Metadata.Label 
+              <List.Item.Detail.Metadata.Label
                 title="Name"
-                text={customer.name ?? '—'}
+                text={customer.name ?? "—"}
               />
               <List.Item.Detail.Metadata.Label
                 title="First Seen"
@@ -62,29 +62,29 @@ const CustomerItem = ({ customer }: CustomerProps) => {
               />
               <List.Item.Detail.Metadata.Label
                 title="Organization"
-                text={organization?.name ?? '—'}
+                text={organization?.name ?? "—"}
               />
               <List.Item.Detail.Metadata.Separator />
               {/* Add billing info */}
               <List.Item.Detail.Metadata.Label
                 title="Address 1"
-                text={customer.billingAddress?.line1 ?? '—'}
+                text={customer.billingAddress?.line1 ?? "—"}
               />
               <List.Item.Detail.Metadata.Label
                 title="Address 2"
-                text={customer.billingAddress?.line2 ?? '—'}
+                text={customer.billingAddress?.line2 ?? "—"}
               />
               <List.Item.Detail.Metadata.Label
                 title="City"
-                text={customer.billingAddress?.city ?? '—'}
+                text={customer.billingAddress?.city ?? "—"}
               />
               <List.Item.Detail.Metadata.Label
                 title="State"
-                text={customer.billingAddress?.state ?? '—'}
+                text={customer.billingAddress?.state ?? "—"}
               />
               <List.Item.Detail.Metadata.Label
                 title="Country"
-                text={customer.billingAddress?.country ?? '—'}
+                text={customer.billingAddress?.country ?? "—"}
               />
             </List.Item.Detail.Metadata>
           }
@@ -96,7 +96,10 @@ const CustomerItem = ({ customer }: CustomerProps) => {
             title="Email Customer"
             url={`mailto:${customer.email}`}
           />
-          <Action.CopyToClipboard title="Copy Customer ID" content={customer.id} />
+          <Action.CopyToClipboard
+            title="Copy Customer ID"
+            content={customer.id}
+          />
         </ActionPanel>
       }
       accessories={[
@@ -134,7 +137,9 @@ const CustomersView = () => {
     >
       {customers?.pages
         .flatMap((page) => page.result.items)
-        .map((customer) => <CustomerItem key={customer.id} customer={customer} />)}
+        .map((customer) => (
+          <CustomerItem key={customer.id} customer={customer} />
+        ))}
     </List>
   );
 };

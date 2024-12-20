@@ -3,7 +3,10 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import { PolarContext } from "../providers";
 
-export const useCustomers = (parameters: CustomersListRequest, limit: number) => {
+export const useCustomers = (
+  parameters: CustomersListRequest,
+  limit: number,
+) => {
   const polar = useContext(PolarContext);
 
   return useInfiniteQuery({

@@ -61,7 +61,7 @@ export const authenticate = async (): Promise<string> => {
   const authRequest = await client.authorizationRequest({
     endpoint: "https://polar.sh/oauth2/authorize",
     clientId: CLIENT_ID,
-    scope: SCOPES
+    scope: SCOPES,
   });
 
   const tokenSet = await client.getTokens();
