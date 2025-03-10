@@ -8,7 +8,7 @@ const SCOPES =
 
 async function fetchTokens(
   authRequest: OAuth.AuthorizationRequest,
-  authCode: string,
+  authCode: string
 ): Promise<OAuth.TokenResponse> {
   const params = new URLSearchParams();
   params.append("client_id", CLIENT_ID);
@@ -29,7 +29,7 @@ async function fetchTokens(
 }
 
 async function refreshTokens(
-  refreshToken: string,
+  refreshToken: string
 ): Promise<OAuth.TokenResponse> {
   const params = new URLSearchParams();
   params.append("client_id", "YourClientId");
@@ -68,10 +68,19 @@ export const authenticate = async (): Promise<string> => {
 
   if (tokenSet?.accessToken && tokenSet.scope === SCOPES) {
     if (tokenSet.refreshToken && tokenSet.isExpired()) {
-      const tokenResponse = await refreshTokens(tokenSet.refreshToken);
-      await client.setTokens(tokenResponse);
+      let tokenResponse: OAuth.TokenResponse;
 
-      return tokenResponse.access_token;
+      try {
+        tokenResponse = await refreshTokens(tokenSet.refreshToken);
+        await client.setTokens(tokenResponse);
+
+        if (tokenResponse.access_token) {
+          return tokenResponse.access_token;
+        }
+      } catch (error) {
+        console.error("refresh tokens error:", error);
+        client.removeTokens();
+      }
     }
 
     return tokenSet.accessToken;
