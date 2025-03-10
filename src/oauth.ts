@@ -3,9 +3,6 @@ import fetch from "node-fetch";
 
 const CLIENT_ID = "polar_ci_emNfLiLOhk0njeLomDs14g";
 
-const SCOPES =
-  "openid profile email user:read organizations:read organizations:write products:read products:write benefits:read benefits:write subscriptions:read subscriptions:write orders:read metrics:read customers:read customers:write";
-
 async function fetchTokens(
   authRequest: OAuth.AuthorizationRequest,
   authCode: string,
@@ -61,12 +58,13 @@ export const authenticate = async (): Promise<string> => {
   const authRequest = await client.authorizationRequest({
     endpoint: "https://polar.sh/oauth2/authorize",
     clientId: CLIENT_ID,
-    scope: SCOPES,
+    scope:
+      "openid profile email user:read organizations:read organizations:write products:read products:write benefits:read benefits:write subscriptions:read subscriptions:write orders:read metrics:read",
   });
 
   const tokenSet = await client.getTokens();
 
-  if (tokenSet?.accessToken && tokenSet.scope === SCOPES) {
+  if (tokenSet?.accessToken) {
     if (tokenSet.refreshToken && tokenSet.isExpired()) {
       const tokenResponse = await refreshTokens(tokenSet.refreshToken);
       await client.setTokens(tokenResponse);
