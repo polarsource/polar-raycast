@@ -17,8 +17,6 @@ declare namespace Preferences {
   export type Orders = ExtensionPreferences & {}
   /** Preferences accessible in the `subscriptions` command */
   export type Subscriptions = ExtensionPreferences & {}
-  /** Preferences accessible in the `customers` command */
-  export type Customers = ExtensionPreferences & {}
 }
 
 declare namespace Arguments {
@@ -26,7 +24,5 @@ declare namespace Arguments {
   export type Orders = {}
   /** Arguments passed to the `subscriptions` command */
   export type Subscriptions = {}
-  /** Arguments passed to the `customers` command */
-  export type Customers = {}
 }
 
