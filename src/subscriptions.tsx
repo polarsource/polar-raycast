@@ -5,8 +5,8 @@ import { PolarProvider, queryClient } from "./providers";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { useListSubscriptions } from "./hooks/subscriptions";
 import { formatCurrencyAndAmount } from "./utils";
-import { Subscription } from "@polar-sh/sdk/models/components";
 import { useOrganization } from "./hooks/organizations";
+import { Subscription } from "@polar-sh/sdk/dist/commonjs/models/components/subscription";
 
 export default function Command() {
   const [accessToken, setAccessToken] = useState<string>();
@@ -34,7 +34,7 @@ interface SubscriptionItemProps {
 
 const SubscriptionItem = ({ subscription }: SubscriptionItemProps) => {
   const { data: organization, isLoading } = useOrganization(
-    subscription.product.organizationId,
+    subscription.product.organizationId
   );
 
   return (
@@ -139,7 +139,7 @@ const SubscriptionsView = () => {
     {
       active: true,
     },
-    20,
+    20
   );
 
   const handleLoadMore = useCallback(() => {

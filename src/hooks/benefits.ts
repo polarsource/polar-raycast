@@ -1,12 +1,9 @@
-import { BenefitCreate } from "@polar-sh/sdk/models/components";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
-
-import {
-  BenefitsUpdateRequest,
-  BenefitTypeFilter,
-} from "@polar-sh/sdk/models/operations";
 import { PolarContext, queryClient } from "../providers";
+import { BenefitTypeFilter } from "@polar-sh/sdk/dist/commonjs/models/operations/benefitslist";
+import { BenefitsUpdateRequest } from "@polar-sh/sdk/dist/commonjs/models/operations/benefitsupdate";
+import { BenefitCreate } from "@polar-sh/sdk/dist/commonjs/models/components/benefitcreate";
 
 const _invalidateBenefitsQueries = ({
   id,
@@ -31,7 +28,7 @@ const _invalidateBenefitsQueries = ({
 export const useBenefits = (
   orgId?: string,
   limit = 30,
-  type?: BenefitTypeFilter,
+  type?: BenefitTypeFilter
 ) => {
   const polar = useContext(PolarContext);
 

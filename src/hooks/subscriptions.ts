@@ -1,11 +1,11 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { SubscriptionsListRequest } from "@polar-sh/sdk/models/operations";
+import { SubscriptionsListRequest } from "@polar-sh/sdk/dist/commonjs/models/operations/subscriptionslist";
 import { PolarContext } from "../providers";
 import { useContext } from "react";
 
 export const useListSubscriptions = (
   parameters: SubscriptionsListRequest,
-  limit: number,
+  limit: number
 ) => {
   const polar = useContext(PolarContext);
 
@@ -21,7 +21,7 @@ export const useListSubscriptions = (
     getNextPageParam: (lastPage, pages) => {
       const currentPage = pages.length;
       const totalPages = Math.ceil(
-        lastPage.result.pagination.totalCount / limit,
+        lastPage.result.pagination.totalCount / limit
       );
       const nextPage = totalPages > currentPage ? currentPage + 1 : undefined;
 
