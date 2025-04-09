@@ -28,7 +28,7 @@ const _invalidateBenefitsQueries = ({
 export const useBenefits = (
   orgId?: string,
   limit = 30,
-  type?: BenefitTypeFilter
+  type?: BenefitTypeFilter,
 ) => {
   const polar = useContext(PolarContext);
 

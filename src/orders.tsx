@@ -34,7 +34,7 @@ interface OrderProps {
 
 const OrderItem = ({ order }: OrderProps) => {
   const { data: organization, isLoading } = useOrganization(
-    order.product.organizationId
+    order.product.organizationId,
   );
 
   return (

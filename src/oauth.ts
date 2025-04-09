@@ -5,7 +5,7 @@ const CLIENT_ID = "polar_ci_emNfLiLOhk0njeLomDs14g";
 
 async function fetchTokens(
   authRequest: OAuth.AuthorizationRequest,
-  authCode: string
+  authCode: string,
 ): Promise<OAuth.TokenResponse> {
   const params = new URLSearchParams();
   params.append("client_id", CLIENT_ID);
@@ -26,7 +26,7 @@ async function fetchTokens(
 }
 
 async function refreshTokens(
-  refreshToken: string
+  refreshToken: string,
 ): Promise<OAuth.TokenResponse> {
   const params = new URLSearchParams();
   params.append("client_id", "YourClientId");

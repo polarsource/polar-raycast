@@ -34,7 +34,7 @@ interface SubscriptionItemProps {
 
 const SubscriptionItem = ({ subscription }: SubscriptionItemProps) => {
   const { data: organization, isLoading } = useOrganization(
-    subscription.product.organizationId
+    subscription.product.organizationId,
   );
 
   return (
@@ -139,7 +139,7 @@ const SubscriptionsView = () => {
     {
       active: true,
     },
-    20
+    20,
   );
 
   const handleLoadMore = useCallback(() => {

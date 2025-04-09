@@ -5,7 +5,7 @@ import { PolarContext } from "../providers";
 
 export const useCustomers = (
   parameters: CustomersListRequest,
-  limit: number
+  limit: number,
 ) => {
   const polar = useContext(PolarContext);
 
@@ -17,7 +17,7 @@ export const useCustomers = (
     getNextPageParam: (lastPage, pages) => {
       const currentPage = pages.length;
       const totalPages = Math.ceil(
-        lastPage.result.pagination.totalCount / limit
+        lastPage.result.pagination.totalCount / limit,
       );
       const nextPage = totalPages > currentPage ? currentPage + 1 : undefined;
 
